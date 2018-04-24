@@ -29,9 +29,22 @@ class Password: NSObject {
     init(documentSnapshot: DocumentSnapshot) {
         self.id = documentSnapshot.documentID
         let data = documentSnapshot.data()!
+        
+        if data[serviceKey] != nil {
         self.service = data[serviceKey] as! String
+        } else {
+            self.service = ""
+        }
+        if data[usernameKey] != nil {
         self.username = data[usernameKey] as! String
+        } else {
+            self.username = ""
+        }
+        if data[passwordKey] != nil {
         self.password = data[passwordKey] as! String
+        } else {
+            self.password = ""
+        }
     }
     
     var data: [String: Any] {
